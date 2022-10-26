@@ -2,8 +2,8 @@ import React from "react";
 import MovieList from "./MovieList";
 import SearchBar from "./SearchBar";
 import AddMovie from "./AddMovie";
-
 import axios from "axios";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
   state = {
@@ -34,15 +34,31 @@ class App extends React.Component {
       return movie.name.toLowerCase().indexOf(this.state.searchQuery) !== -1;
     });
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <SearchBar searchMovieProp={this.searchMovie} />
-          </div>
+      <Router>
+        <div className="container">
+          <Switch>
+            <Route path="/add" component={AddMovie} />
+
+            <Route
+              path="/"
+              render={() => (
+                <React.Fragment>
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <SearchBar searchMovieProp={this.searchMovie} />
+                    </div>
+                  </div>
+
+                  <MovieList
+                    movies={filteredMovies}
+                    deleteMovieProp={this.deleteMovie}
+                  />
+                </React.Fragment>
+              )}
+            ></Route>
+          </Switch>
         </div>
-        <MovieList movies={filteredMovies} deleteMovieProp={this.deleteMovie} />
-        <AddMovie />
-      </div>
+      </Router>
     );
   }
 }
