@@ -3,7 +3,7 @@ import MovieList from "./MovieList";
 import SearchBar from "./SearchBar";
 import AddMovie from "./AddMovie";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {
@@ -23,6 +23,16 @@ class App extends React.Component {
     this.setState((state) => ({
       movies: newMovieList,
     }));
+  };
+
+  // ADD MOVIE
+  addMovie = async (movie) => {
+    await axios.post(`http://localhost:3002/movies/`, movie);
+    this.setState((state) => ({
+      movies: state.movies.concat([movie]),
+    }));
+
+    this.getMovies();
   };
 
   searchMovie = (event) => {
@@ -62,6 +72,17 @@ class App extends React.Component {
                     deleteMovieProp={this.deleteMovie}
                   />
                 </React.Fragment>
+              )}
+            ></Route>
+            <Route
+              path="/add"
+              render={({ history }) => (
+                <AddMovie
+                  onAddMovie={(movie) => {
+                    this.addMovie(movie);
+                    history.push("/");
+                  }}
+                />
               )}
             ></Route>
           </Switch>

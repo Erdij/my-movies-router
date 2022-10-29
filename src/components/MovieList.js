@@ -1,10 +1,10 @@
 import React from "react";
 
 const MovieList = (props) => {
-  /*         function handleClick(event) {
-            //console.log("Button Clicked");
-            console.log(event.pageY)
-        } */
+  function handleClick(event) {
+    console.log("Button Clicked");
+    console.log(event.pageY);
+  }
 
   const truncateOverview = (string, maxLength) => {
     if (!string) return null;
