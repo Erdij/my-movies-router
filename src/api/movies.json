@@ -29,10 +29,11 @@
       "imageURL": "https://image.tmdb.org/t/p/w220_and_h330_face/6Bbq8qQWpoApLZYWFFAuZ1r2gFw.jpg"
     },
     {
-      "name": "erdijx",
+      "name": "Peaky Blinders",
+      "rating": "10",
       "imageURL": "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
-      "overview": "Buraya Bakarlar",
-      "id": 7
+      "overview": "By order of the Peaky Blinders",
+      "id": 9
     }
   ]
 }
