@@ -26,14 +26,14 @@ class App extends React.Component {
   };
 
   // ADD MOVIE
-  // addMovie = async (movie) => {
-  //   await axios.post(`http://localhost:3002/movies/`, movie);
-  //   this.setState((state) => ({
-  //     movies: state.movies.concat([movie]),
-  //   }));
+  addMovie = async (movie) => {
+    await axios.post(`http://localhost:3002/movies/`, movie);
+    this.setState((state) => ({
+      movies: state.movies.concat([movie]),
+    }));
 
-  //   this.getMovies();
-  // };
+    // this.getMovies();
+  };
 
   searchMovie = (event) => {
     this.setState({ searchQuery: event.target.value });
@@ -73,7 +73,17 @@ class App extends React.Component {
                 </React.Fragment>
               )}
             ></Route>
-            <Route path="/add" component={AddMovie} />
+            <Route
+              path="/add"
+              render={({ history }) => (
+                <AddMovie
+                  onAddMovie={(movie) => {
+                    this.addMovie(movie);
+                    history.push("/");
+                  }}
+                />
+              )}
+            ></Route>
           </Switch>
         </div>
       </Router>
