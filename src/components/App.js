@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import AddMovie from "./AddMovie";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import EditMovie from "./EditMovie";
 
 class App extends React.Component {
   state = {
@@ -84,6 +85,7 @@ class App extends React.Component {
                 />
               )}
             ></Route>
+            <Route path="/edit/:id" component={EditMovie} />
           </Switch>
         </div>
       </Router>
